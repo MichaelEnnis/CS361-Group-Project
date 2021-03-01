@@ -3,6 +3,20 @@ package fa.dfa;
 //Michael Ennis
 
 public class DFA {
+	//initial state
+	String q0;
+	//final state
+	String f;
+	//transition function
+	String trans;
+	//alphabet
+	String[] alpha;
+	//set of states
+	String[] q;
+
+	
+
+	
 
 	public void addFinalState(String nextToken) {
 		// TODO Auto-generated method stub
