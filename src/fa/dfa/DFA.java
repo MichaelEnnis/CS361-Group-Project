@@ -10,9 +10,9 @@ import fa.State;
 
 public class DFA implements DFAInterface{
 	//initial state
-	State q0;
+	DFAState q0;
 	//final state
-	State f;
+	DFAState f;
 	//transition function
 	HashMap<DFAState,String> transFunct=new HashMap<DFAState,String>();
 	//alphabet
@@ -30,7 +30,7 @@ public class DFA implements DFAInterface{
 	}
 
 	public void addStartState(String startStateName) {
-		q0 = startStateName;
+	
 		
 	}
 
