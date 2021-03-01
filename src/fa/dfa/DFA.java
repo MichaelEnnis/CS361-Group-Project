@@ -1,8 +1,13 @@
 package fa.dfa;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 //Jeremy Hochstrasser
 //Michael Ennis
 
-public class DFA {
+public abstract class DFA implements DFAInterface{
 	//initial state
 	String q0;
 	//final state
@@ -10,26 +15,26 @@ public class DFA {
 	//transition function
 	String trans;
 	//alphabet
-	String[] alpha;
+	List<String> alpha =new ArrayList<String>();
 	//set of states
-	String[] q;
+	List<String> Q =new ArrayList<String>();
 
 	
 
 	
 
 	public void addFinalState(String nextToken) {
-		// TODO Auto-generated method stub
+		f = nextToken;
 		
 	}
 
 	public void addStartState(String startStateName) {
-		// TODO Auto-generated method stub
+		q0 = startStateName;
 		
 	}
 
 	public void addState(String nextToken) {
-		// TODO Auto-generated method stub
+		Q.add(nextToken);
 		
 	}
 
