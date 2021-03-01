@@ -11,26 +11,27 @@ import fa.State;
 public class DFA implements DFAInterface{
 	//initial state
 	DFAState q0;
-	//final state
-	DFAState f;
+	//final state(s)
+	Set<DFAState> f = new HashSet<DFAState>();
 	//transition function
-	Map<String,DFAState> transFunct=new HashMap<String,DFAState>();
-	//alphabet
-	Set<String> alpha = new HashSet<String>();
+	Set<Character> alpha = new HashSet<Character>();
 	//set of states
 	Set<DFAState> Q = new HashSet<DFAState>();
-	
 
-	
+
+
 
 	public void addFinalState(String nextToken) {
 		//initialise state F
-		f = new DFAState();
-		f.setName(nextToken);
-		f.setType("finalState");
+		DFAState f1 = new DFAState();
+		f1.setName(nextToken);
+		f1.setType("finalState");
+		//		f = new DFAState();
+		//		f.setName(nextToken);
+		//		f.setType("finalState");
 		//add final state to our set of states
-		Q.add(f);
-		
+		f.add(f1);
+
 	}
 
 	public void addStartState(String startStateName) {
@@ -38,7 +39,7 @@ public class DFA implements DFAInterface{
 		q0.setName(startStateName);
 		q0.setType("initalState");
 		Q.add(q0);	
-		
+
 	}
 
 	public void addState(String nextToken) {
@@ -48,18 +49,16 @@ public class DFA implements DFAInterface{
 		Q.add(temp);		
 	}
 
-	public void addTransition(String valueOf, char c, String valueOf2) {
-		// TODO Auto-generated method stub
-		String c1 = String.valueOf(c);
-		DFAState end = null;
-		for(DFAState st : Q) {
-			if(valueOf2 == st.getName()) {
-				end = st;
+	public void addTransition(String fromState, char c, String toState) {
+		for(DFAState s : Q) {
+			if(s.getName()==fromState) {
+				for(DFAState t : Q)
+					if(t.getName()==toState) {
+						s.AddTransition(c, t);
+					}
 			}
 		}
-		//store the char c as the key and the dfaState valueOf2 as value
-		transFunct.put(c1, end);
-		
+
 	}
 
 	public boolean accepts(String nextLine) {
@@ -70,36 +69,38 @@ public class DFA implements DFAInterface{
 
 	@Override
 	public Set<? extends State> getStates() {
-		// TODO Auto-generated method stub
-		return null;
+		return Q;
 	}
 
 
 	@Override
 	public Set<? extends State> getFinalStates() {
-		// TODO Auto-generated method stub
-		return null;
+		return f;
 	}
 
 
 	@Override
 	public State getStartState() {
-		// TODO Auto-generated method stub
-		return null;
+		return q0;
 	}
 
 
 	@Override
 	public Set<Character> getABC() {
-		// TODO Auto-generated method stub
-		return null;
+		return alpha;
 	}
 
 
 	@Override
 	public State getToState(DFAState from, char onSymb) {
-		// TODO Auto-generated method stub
-		return null;
+		return from.search(onSymb);
+	}
+
+	public String toString() {
+		String s = "Q = "+ getStates() + "\n Sigma = "+ getABC() + "\n delta = "+
+				" DELTA TABLE FROM HASH MAP"+ "\n q0 = "+getStartState()+"\n F = "+ getFinalStates() + "\n";
+		return s;
+
 	}
 
 }
