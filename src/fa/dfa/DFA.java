@@ -26,10 +26,14 @@ public class DFA implements DFAInterface{
 	public void addFinalState(String nextToken) {
 		f = new DFAState();
 		f.setName(nextToken);
+		f.setType("finalState");
 		
 	}
 
 	public void addStartState(String startStateName) {
+		q0 = new DFAState();
+		q0.setName(startStateName);
+		q0.setType("initalState");
 	
 		
 	}
