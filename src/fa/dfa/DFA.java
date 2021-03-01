@@ -18,7 +18,7 @@ public class DFA implements DFAInterface{
 	//alphabet
 	Set<String> alpha = new HashSet<String>();
 	//set of states
-	Set<String> Q = new HashSet<String>();
+	Set<DFAState> Q = new HashSet<DFAState>();
 	
 
 	
@@ -39,7 +39,9 @@ public class DFA implements DFAInterface{
 	}
 
 	public void addState(String nextToken) {
-		Q.add(nextToken);
+		DFAState temp = new DFAState();
+		temp.setName(nextToken);
+		temp.setType("NONE");
 		
 	}
 
