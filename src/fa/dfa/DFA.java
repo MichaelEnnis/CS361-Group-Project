@@ -14,7 +14,7 @@ public class DFA implements DFAInterface{
 	//final state
 	DFAState f;
 	//transition function
-	HashMap<DFAState,String> transFunct=new HashMap<DFAState,String>();
+	Map<String,DFAState> transFunct=new HashMap<String,DFAState>();
 	//alphabet
 	Set<String> alpha = new HashSet<String>();
 	//set of states
@@ -24,9 +24,12 @@ public class DFA implements DFAInterface{
 	
 
 	public void addFinalState(String nextToken) {
+		//initialise state F
 		f = new DFAState();
 		f.setName(nextToken);
 		f.setType("finalState");
+		//add final state to our set of states
+		Q.add(f);
 		
 	}
 
@@ -34,7 +37,7 @@ public class DFA implements DFAInterface{
 		q0 = new DFAState();
 		q0.setName(startStateName);
 		q0.setType("initalState");
-	
+		Q.add(q0);	
 		
 	}
 
@@ -42,11 +45,18 @@ public class DFA implements DFAInterface{
 		DFAState temp = new DFAState();
 		temp.setName(nextToken);
 		temp.setType("NONE");
-		
+		Q.add(temp);		
 	}
 
 	public void addTransition(String valueOf, char c, String valueOf2) {
 		// TODO Auto-generated method stub
+		String c1 = String.valueOf(c);
+		DFAState end;
+		for(DFAState st : Q) {
+			if(valueOf2 == st.getName()) {
+				end = st;
+			}
+		}
 		
 	}
 
