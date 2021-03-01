@@ -51,12 +51,14 @@ public class DFA implements DFAInterface{
 	public void addTransition(String valueOf, char c, String valueOf2) {
 		// TODO Auto-generated method stub
 		String c1 = String.valueOf(c);
-		DFAState end;
+		DFAState end = null;
 		for(DFAState st : Q) {
 			if(valueOf2 == st.getName()) {
 				end = st;
 			}
 		}
+		//store the char c as the key and the dfaState valueOf2 as value
+		transFunct.put(c1, end);
 		
 	}
 
