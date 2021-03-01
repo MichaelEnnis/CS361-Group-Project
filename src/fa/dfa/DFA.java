@@ -1,30 +1,31 @@
 package fa.dfa;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import fa.State;
 
 //Jeremy Hochstrasser
 //Michael Ennis
 
-public abstract class DFA implements DFAInterface{
+public class DFA implements DFAInterface{
 	//initial state
-	String q0;
+	State q0;
 	//final state
-	String f;
+	State f;
 	//transition function
-	String trans;
+	HashMap<DFAState,String> transFunct=new HashMap<DFAState,String>();
 	//alphabet
-	List<String> alpha =new ArrayList<String>();
+	Set<String> alpha = new HashSet<String>();
 	//set of states
-	List<String> Q =new ArrayList<String>();
-
+	Set<String> Q = new HashSet<String>();
 	
 
 	
 
 	public void addFinalState(String nextToken) {
-		f = nextToken;
+		f = new DFAState();
+		f.setName(nextToken);
 		
 	}
 
@@ -46,6 +47,41 @@ public abstract class DFA implements DFAInterface{
 	public boolean accepts(String nextLine) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public Set<? extends State> getStates() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Set<? extends State> getFinalStates() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public State getStartState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Set<Character> getABC() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public State getToState(DFAState from, char onSymb) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
