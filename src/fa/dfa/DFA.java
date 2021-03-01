@@ -17,6 +17,8 @@ public class DFA implements DFAInterface{
 	Set<Character> alpha = new HashSet<Character>();
 	//set of states
 	Set<DFAState> Q = new HashSet<DFAState>();
+	
+	String startName;
 
 
 
@@ -31,6 +33,7 @@ public class DFA implements DFAInterface{
 		//		f.setType("finalState");
 		//add final state to our set of states
 		f.add(f1);
+		Q.add(f1);
 
 	}
 
@@ -39,7 +42,12 @@ public class DFA implements DFAInterface{
 		q0.setName(startStateName);
 		q0.setType("initalState");
 		Q.add(q0);	
-
+		startName = startStateName;
+		
+		//hardcoded alphabet for right now
+		alpha.add('0');
+		//hardcoded alphabet for right now
+		alpha.add('1');
 	}
 
 	public void addState(String nextToken) {
@@ -50,20 +58,41 @@ public class DFA implements DFAInterface{
 	}
 
 	public void addTransition(String fromState, char c, String toState) {
-		for(DFAState s : Q) {
-			if(s.getName()==fromState) {
-				for(DFAState t : Q)
-					if(t.getName()==toState) {
-						s.AddTransition(c, t);
+		
+		for(DFAState temp : Q) {
+			if(temp.getName() == fromState) {
+				for(DFAState findConnecter : Q) {
+					if(findConnecter.getName() == toState) {
+						temp.AddTransition(c, findConnecter);
 					}
+				}
 			}
 		}
 
 	}
 
 	public boolean accepts(String nextLine) {
-		// TODO Auto-generated method stub
-		return false;
+
+		if(Q.isEmpty()) {
+			return false;
+		}
+		else if (!Q.isEmpty()) {
+			String[] inputArray = nextLine.split(" ");
+			DFAState position = new DFAState();
+			position = q0;
+			for(String tran : inputArray) {
+				if(position != null) {
+					position = position.findTransition(tran.charAt(0));
+				}
+			}
+			if(position != null&&position.getType() == "finalState") {
+				return true;
+			} else {return false;}
+		}
+		else {
+			return false;
+		}
+		
 	}
 
 

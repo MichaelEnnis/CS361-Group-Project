@@ -14,11 +14,17 @@ public class DFAState extends State{
 	//ArrayList<DFAState[]> outerArr = new ArrayList<DFAState[]>();
 	private String type;
 	
+	public DFAState findTransition(Character c) {
+
+		return transFunct.get(c);
+
+	}
+	
 	public void AddTransition(Character c, DFAState toState) {
 		transFunct.put(c, toState);
 	}
 	
-	public DFAState search(char onSymb) {
+	public DFAState search(Character onSymb) {
 		return transFunct.get(onSymb);
 		
 	}
