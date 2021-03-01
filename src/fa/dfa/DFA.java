@@ -1,35 +1,45 @@
 package fa.dfa;
+
+
+import java.util.*;
+
+import fa.State;
+
 //Jeremy Hochstrasser
 //Michael Ennis
 
-public class DFA {
+public class DFA implements DFAInterface{
 	//initial state
-	String q0;
+	DFAState q0;
 	//final state
-	String f;
+	DFAState f;
 	//transition function
-	String trans;
+	HashMap<DFAState,String> transFunct=new HashMap<DFAState,String>();
 	//alphabet
-	String[] alpha;
+	Set<String> alpha = new HashSet<String>();
 	//set of states
-	String[] q;
-
+	Set<String> Q = new HashSet<String>();
 	
 
 	
 
 	public void addFinalState(String nextToken) {
-		// TODO Auto-generated method stub
+		f = new DFAState();
+		f.setName(nextToken);
+		f.setType("finalState");
 		
 	}
 
 	public void addStartState(String startStateName) {
-		// TODO Auto-generated method stub
+		q0 = new DFAState();
+		q0.setName(startStateName);
+		q0.setType("initalState");
+	
 		
 	}
 
 	public void addState(String nextToken) {
-		// TODO Auto-generated method stub
+		Q.add(nextToken);
 		
 	}
 
@@ -41,6 +51,41 @@ public class DFA {
 	public boolean accepts(String nextLine) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public Set<? extends State> getStates() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Set<? extends State> getFinalStates() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public State getStartState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Set<Character> getABC() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public State getToState(DFAState from, char onSymb) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
