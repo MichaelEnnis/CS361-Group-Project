@@ -1,12 +1,33 @@
 package fa.dfa;
 
+import java.util.*;
+
 import fa.State;
 
 //Jeremy Hochstrasser
 //Michael Ennis
 public class DFAState extends State{
 	
+	//transition function
+	Map<Character,DFAState> transFunct=new HashMap<Character,DFAState>();
+	
+	//ArrayList<DFAState[]> outerArr = new ArrayList<DFAState[]>();
 	private String type;
+	
+	public DFAState findTransition(Character c) {
+
+		return transFunct.get(c);
+
+	}
+	
+	public void AddTransition(Character c, DFAState toState) {
+		transFunct.put(c, toState);
+	}
+	
+	public DFAState search(Character onSymb) {
+		return transFunct.get(onSymb);
+		
+	}
 	
 	public void setType(String type) {
 		this.type = type;
