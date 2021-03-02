@@ -44,10 +44,6 @@ public class DFA implements DFAInterface{
 		Q.add(q0);	
 		startName = startStateName;
 		
-		//hardcoded alphabet for right now
-		alpha.add('0');
-		//hardcoded alphabet for right now
-		alpha.add('1');
 	}
 
 	public void addState(String nextToken) {
@@ -58,6 +54,9 @@ public class DFA implements DFAInterface{
 	}
 
 	public void addTransition(String fromState, char c, String toState) {
+		if(!alpha.contains(c)) {
+			alpha.add(c);
+		}
 		
 		for(DFAState temp : Q) {
 			if(temp.getName().equals(fromState)) {
