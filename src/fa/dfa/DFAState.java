@@ -14,6 +14,10 @@ public class DFAState extends State{
 	//ArrayList<DFAState[]> outerArr = new ArrayList<DFAState[]>();
 	private String type;
 	
+	public Set<Character> getAlphabet() {
+		return transFunct.keySet();
+	}
+	
 	public DFAState findTransition(Character c) {
 
 		return transFunct.get(c);
