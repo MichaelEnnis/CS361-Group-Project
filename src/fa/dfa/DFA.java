@@ -60,9 +60,9 @@ public class DFA implements DFAInterface{
 	public void addTransition(String fromState, char c, String toState) {
 		
 		for(DFAState temp : Q) {
-			if(temp.getName() == fromState) {
+			if(temp.getName().equals(fromState)) {
 				for(DFAState findConnecter : Q) {
-					if(findConnecter.getName() == toState) {
+					if(findConnecter.getName().equals(toState)) {
 						temp.AddTransition(c, findConnecter);
 					}
 				}
@@ -116,7 +116,9 @@ public class DFA implements DFAInterface{
 
 	@Override
 	public Set<Character> getABC() {
-		return alpha;
+		//Iterator i = Q.iterator();
+		//DFAState s = (DFAState) i.next();
+		return q0.getAlphabet();
 	}
 
 
@@ -124,10 +126,16 @@ public class DFA implements DFAInterface{
 	public State getToState(DFAState from, char onSymb) {
 		return from.search(onSymb);
 	}
+	
+	public String getDelta() {
+		
+		return null;
+	}
 
 	public String toString() {
-		String s = "Q = "+ getStates() + "\n Sigma = "+ getABC() + "\n delta = "+
-				" DELTA TABLE FROM HASH MAP"+ "\n q0 = "+getStartState()+"\n F = "+ getFinalStates() + "\n";
+		String s = "Q = "+ getStates().toString().replace("[", "{").replace("]", "}") + "\n Sigma = "+ getABC().toString().replace("[", "{").replace("]", "}")
+				+ "\n delta = "+" DELTA TABLE FROM HASH MAP"+ "\n q0 = "
+				+getStartState()+"\n F = "+ getFinalStates().toString().replace("[", "{").replace("]", "}") + "\n";
 		return s;
 
 	}
