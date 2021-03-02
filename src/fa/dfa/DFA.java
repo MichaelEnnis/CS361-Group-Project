@@ -60,9 +60,9 @@ public class DFA implements DFAInterface{
 	public void addTransition(String fromState, char c, String toState) {
 		
 		for(DFAState temp : Q) {
-			if(temp.getName() == fromState) {
+			if(temp.getName().equals(fromState)) {
 				for(DFAState findConnecter : Q) {
-					if(findConnecter.getName() == toState) {
+					if(findConnecter.getName().equals(toState)) {
 						temp.AddTransition(c, findConnecter);
 					}
 				}
@@ -77,12 +77,12 @@ public class DFA implements DFAInterface{
 			return false;
 		}
 		else if (!Q.isEmpty()) {
-			String[] inputArray = nextLine.split(" ");
+			char[] inputArray = nextLine.toCharArray();
 			DFAState position = new DFAState();
 			position = q0;
-			for(String tran : inputArray) {
+			for(char tran : inputArray) {
 				if(position != null) {
-					position = position.findTransition(tran.charAt(0));
+					position = position.findTransition(tran);
 				}
 			}
 			if(position != null&&position.getType() == "finalState") {
