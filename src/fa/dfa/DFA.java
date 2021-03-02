@@ -20,6 +20,7 @@ public class DFA implements DFAInterface{
 	
 	String startName;
 
+	String table = "";
 
 
 
@@ -93,8 +94,37 @@ public class DFA implements DFAInterface{
 		}
 		
 	}
+	
+	public String getTable() {
+
+//		table.add("___________\n");
+		String title = "\n   ";
+		for(char c : alpha) {
+			if(!(c == ' ')) {
+				title += c + "  ";
+			}
+			
+		}
+		table += (title + "\n");
+		table += ("___________\n");
+		
+		for(DFAState row : Q) {
+			String temp = "";
+			temp += row.getName();
+			for(char col : alpha) {
+				temp += "  "+row.findTransition(col).getName();
+			}
+			temp += "\n";
+			table += (temp);
+		}
+		
 
 
+
+		
+		return table.toString();
+	}
+	
 	@Override
 	public Set<? extends State> getStates() {
 		return Q;
@@ -125,8 +155,8 @@ public class DFA implements DFAInterface{
 	}
 
 	public String toString() {
-		String s = "Q = "+ getStates() + "\n Sigma = "+ getABC() + "\n delta = "+
-				" DELTA TABLE FROM HASH MAP"+ "\n q0 = "+getStartState()+"\n F = "+ getFinalStates() + "\n";
+		String s = "Q = "+ getStates() + "\n Sigma = "+ getABC() + "\n delta = \n"+
+				getTable()+ "\n q0 = "+getStartState()+"\n F = "+ getFinalStates() + "\n";
 		return s;
 
 	}
