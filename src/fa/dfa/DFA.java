@@ -132,11 +132,14 @@ public class DFA implements DFAInterface{
 		return null;
 	}
 
+	public String fixBrackets(String s) {
+		return s.replace("[", "{").replace("]", "}");
+	}
 	public String toString() {
-		String s = "Q = "+ getStates().toString().replace("[", "{").replace("]", "}") + "\n Sigma = "+ getABC().toString().replace("[", "{").replace("]", "}")
-				+ "\n delta = "+" DELTA TABLE FROM HASH MAP"+ "\n q0 = "
-				+getStartState()+"\n F = "+ getFinalStates().toString().replace("[", "{").replace("]", "}") + "\n";
-		return s;
+		String s = "Q = "+ fixBrackets(getStates().toString()) + "\nSigma = "+ fixBrackets(getABC().toString())
+				+ "\ndelta = "+" DELTA TABLE FROM HASH MAP"+ "\nq0 = "
+				+getStartState()+"\nF = "+ fixBrackets(getFinalStates().toString());
+		return s +"\n";
 
 	}
 
