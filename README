@@ -1,0 +1,20 @@
+# Project 1: Deterministic Finite Automata
+
+* Authors: Michael Ennis and Jeremy Hocstrasser (Section 1)
+* Class: CS361 Section 1
+* Semester: Spring 2021
+
+## Overview
+
+This program simulates a Deterministic Finite Automata.
+
+## Compiling and Using
+
+To run this program, you provide it a test class in the form of a text
+file.
+
+To compile:
+	javac *.java
+
+To Run the driver class:
+	java DFADriver p1tc1.txt
